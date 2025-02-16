@@ -8,6 +8,16 @@ const queries = {
         })
 
         return token;
+    },
+    getCurrentLogginUser: async(_:any, parameters: any, context: any)=>{
+        console.log(context)
+        if(context && context.user){
+            const id = context.user.id 
+            const user = await UserService.getUserById(id)
+            return user;
+        }
+
+        throw new Error('Invalid Token or Invalid credentials')
     }
 }
 
